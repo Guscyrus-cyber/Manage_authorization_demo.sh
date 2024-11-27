@@ -1,0 +1,205 @@
+──(root㉿user)-[~]
+└─# # Create the directory structure
+mkdir -p /home/research2/projects/drafts
+
+# Navigate to the projects directory
+cd /home/research2/projects
+
+# Create files
+touch project_a.txt project_b.txt project_k.txt project_m.txt .hidden_project
+
+# Set permissions for files
+chmod 644 project_a.txt   # Owner: Read & Write; Group & Others: Read
+chmod 666 project_b.txt   # Owner, Group, Others: Read & Write
+chmod 644 project_k.txt   # Owner: Read & Write; Group & Others: Read
+chmod 664 project_m.txt   # Owner: Read & Write; Group: Read & Write; Others: None
+chmod 600 .hidden_project # Owner: Read & Write; No access for others# Set permissions for drafts directory
+chmod 775 drafts          # Owner & Group: Full Access; Others: Read & Execute
+                                             
+┌──(root㉿user)-[/home/research2/projects]
+└─# cd /home/research2/projects
+                                                     
+┌──(root㉿user)-[/home/research2/projects]
+└─# ls -l              
+total 4
+drwxrwxr-x 2 root root 4096 Nov 26 21:07 drafts
+-rw-r--r-- 1 root root    0 Nov 26 21:38 project_a.txt
+-rw-rw-rw- 1 root root    0 Nov 26 21:38 project_b.txt
+-rw-r--r-- 1 root root    0 Nov 26 21:38 project_k.txt
+-rw-rw-r-- 1 root root    0 Nov 26 21:38 project_m.txt
+                                                     
+┌──(root㉿user)-[/home/research2/projects]
+└─# ls -la
+total 12
+drwxr-xr-x 3 root root 4096 Nov 26 21:17 .
+drwxr-xr-x 3 root root 4096 Nov 26 21:07 ..
+-rw------- 1 root root    0 Nov 26 21:38 .hidden_project
+drwxrwxr-x 2 root root 4096 Nov 26 21:07 drafts
+-rw-r--r-- 1 root root    0 Nov 26 21:38 project_a.txt
+-rw-rw-rw- 1 root root    0 Nov 26 21:38 project_b.txt
+-rw-r--r-- 1 root root    0 Nov 26 21:38 project_k.txt
+-rw-rw-r-- 1 root root    0 Nov 26 21:38 project_m.txt
+                                                     
+┌──(root㉿user)-[/home/research2/projects]
+└─# ls -l | grep "w"   
+drwxrwxr-x 2 root root 4096 Nov 26 21:07 drafts
+-rw-r--r-- 1 root root    0 Nov 26 21:38 project_a.txt
+-rw-rw-rw- 1 root root    0 Nov 26 21:38 project_b.txt
+-rw-r--r-- 1 root root    0 Nov 26 21:38 project_k.txt
+-rw-rw-r-- 1 root root    0 Nov 26 21:38 project_m.txt
+                                                     
+┌──(root㉿user)-[/home/research2/projects]
+└─# chmod o-w project_k.txt    
+                                                     
+┌──(root㉿user)-[/home/research2/projects]
+└─# ls -l project_m.txt
+-rw-rw-r-- 1 root root 0 Nov 26 21:38 project_m.txt
+                                                     
+┌──(root㉿user)-[/home/research2/projects]
+└─# ls -l project_m.txt
+-rw-rw-r-- 1 root root 0 Nov 26 21:38 project_m.txt
+                                                     
+┌──(root㉿user)-[/home/research2/projects]
+└─# chmod g-r project_m.txt
+                                                     
+┌──(root㉿user)-[/home/research2/projects]
+└─# chmod 640 .hidden_project
+                                                     
+┌──(root㉿user)-[/home/research2/projects]
+└─# chmod g-x drafts
+                                                     
+┌──(root㉿user)-[/home/research2/projects]
+└─# ls -la             
+total 12
+drwxr-xr-x 3 root root 4096 Nov 26 21:17 .
+drwxr-xr-x 3 root root 4096 Nov 26 21:07 ..
+-rw-r----- 1 root root    0 Nov 26 21:38 .hidden_project
+drwxrw-r-x 2 root root 4096 Nov 26 21:07 drafts
+-rw-r--r-- 1 root root    0 Nov 26 21:38 project_a.txt
+-rw-rw-rw- 1 root root    0 Nov 26 21:38 project_b.txt
+-rw-r--r-- 1 root root    0 Nov 26 21:38 project_k.txt
+-rw--w-r-- 1 root root    0 Nov 26 21:38 project_m.txt
+                                                     
+┌──(root㉿user)-[/home/research2/projects]
+└─# ls -l 
+total 4
+drwxrw-r-x 2 root root 4096 Nov 26 21:07 drafts
+-rw-r--r-- 1 root root    0 Nov 26 21:38 project_a.txt
+-rw-rw-rw- 1 root root    0 Nov 26 21:38 project_b.txt
+-rw-r--r-- 1 root root    0 Nov 26 21:38 project_k.txt
+-rw--w-r-- 1 root root    0 Nov 26 21:38 project_m.txt
+                                                     
+┌──(root㉿user)-[/home/research2/projects]
+
+
+
+1. Create the Directory Structure
+
+mkdir -p /home/research2/projects/drafts
+
+    Explanation: Creates the /home/research2/projects directory and the drafts subdirectory. The -p flag ensures parent directories are created if they don't already exist.
+
+2. Navigate to the projects Directory
+
+cd /home/research2/projects
+
+    Explanation: Changes the current working directory to /home/research2/projects.
+
+3. Create Files
+
+touch project_a.txt project_b.txt project_k.txt project_m.txt .hidden_project
+
+    Explanation: Creates five empty files:
+        project_a.txt
+        project_b.txt
+        project_k.txt
+        project_m.txt
+        .hidden_project (a hidden file because of the . prefix).
+
+4. Set Permissions for Files
+
+chmod 644 project_a.txt
+chmod 666 project_b.txt
+chmod 644 project_k.txt
+chmod 664 project_m.txt
+chmod 600 .hidden_project
+
+    Explanation:
+        644: Owner can read/write, group and others can only read.
+        666: Owner, group, and others can read/write.
+        664: Owner can read/write, group can read/write, others can only read.
+        600: Owner can read/write, no permissions for group or others.
+
+5. Set Permissions for the drafts Directory
+
+chmod 775 drafts
+
+    Explanation: Grants full access (read, write, execute) to the owner and group, and read/execute access to others.
+
+6. List Files with ls -l
+
+ls -l
+
+    Output: Displays the permissions, owner, group, and size of the files and directories.
+
+7. List Hidden Files with ls -la
+
+ls -la
+
+    Output: Lists all files, including hidden ones (those starting with a .), with their permissions.
+
+8. Identify Files with Write Permission
+
+ls -l | grep "w"
+
+    Explanation: Filters files with w (write) permissions in their permission string.
+
+9. Remove Write Permission for Others on project_k.txt
+
+chmod o-w project_k.txt
+
+    Explanation: Removes write permission for "others" (o-w) on project_k.txt.
+
+10. Check Permissions for project_m.txt
+
+ls -l project_m.txt
+
+    Output: Displays the permissions of project_m.txt. Initially, it had -rw-rw-r-- (read/write for owner and group, read-only for others).
+
+11. Remove Group Read Permission for project_m.txt
+
+chmod g-r project_m.txt
+
+    Explanation: Removes read permission for the group (g-r). New permissions: -rw--w-r-- (write-only for group).
+
+12. Change Permissions for .hidden_project
+
+chmod 640 .hidden_project
+
+    Explanation: Sets permissions so the owner can read/write, the group can read, and others have no access.
+
+13. Remove Execute Permission for Group on drafts
+
+chmod g-x drafts
+
+    Explanation: Removes execute permission for the group (g-x). New permissions: drwxrw-r-x.
+
+14. Verify Changes with ls -la
+
+ls -la
+
+    Output: Lists all files and directories, showing the updated permissions.
+
+Summary of Final Permissions
+Files:
+File	Permissions	Owner	Group	Explanation
+project_a.txt	-rw-r--r--	root	root	Read/write (owner), read-only (others).
+project_b.txt	-rw-rw-rw-	root	root	Read/write for all.
+project_k.txt	-rw-r--r--	root	root	Read/write (owner), read-only (others).
+project_m.txt	-rw--w-r--	root	root	Read/write (owner), write-only (group).
+.hidden_project	-rw-r-----	root	root	Read/write (owner), read-only (group).
+Directories:
+Directory	Permissions	Owner	Group	Explanation
+drafts	drwxrw-r-x	root	root	Full (owner), read/write (group).
+
+
